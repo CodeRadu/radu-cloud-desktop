@@ -1,0 +1,40 @@
+{
+  "name": "radu-cloud-desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm run electron:build",
+    "electron:build": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderadu/radu-cloud-desktop.git"
+  },
+  "author": "Radu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coderadu/radu-cloud-desktop/issues"
+  },
+  "homepage": "https://github.com/coderadu/radu-cloud-desktop#readme",
+  "devDependencies": {
+    "electron": "^21.1.0",
+    "electron-builder": "^23.6.0",
+    "electron-builder-squirrel-windows": "^23.6.0",
+    "electron-packager": "^16.0.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "build": {
+    "appId": "radu.cloud",
+    "files": [
+      "**/*",
+      "!**/node_modules*"
+    ],
+    "win": {
+      "target": "squirrel"
+    }
+  }
+}
