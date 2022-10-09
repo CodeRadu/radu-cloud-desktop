@@ -1,0 +1,3 @@
+[submodule "lib/radu-cloud"]
+	path = lib/radu-cloud
+	url = https://github.com/coderadu/radu-cloud-firebase
