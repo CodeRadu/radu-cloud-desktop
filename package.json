@@ -4,9 +4,11 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "start": "electron .",
-    "build": "npm run electron:build",
-    "electron:build": "electron-builder"
+    "start": "cross-env DEV=true BROWSER=false concurrently -k \"cd lib/radu-cloud && npm start\" \"electron .\" \"cd lib/radu-cloud/functions && npm run dev\"",
+    "build": "npm run website:build && npm run electron:build",
+    "electron:build": "electron-builder",
+    "website:build": "cd lib/radu-cloud && npm run build",
+    "install": "cd lib/radu-cloud && npm install && cd functions && npm install"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,8 @@
   },
   "homepage": "https://github.com/coderadu/radu-cloud-desktop#readme",
   "devDependencies": {
+    "concurrently": "^7.4.0",
+    "cross-env": "^7.0.3",
     "electron": "^21.1.0",
     "electron-builder": "^23.6.0",
     "electron-builder-squirrel-windows": "^23.6.0",
@@ -30,8 +34,7 @@
   "build": {
     "appId": "radu.cloud",
     "files": [
-      "**/*",
-      "!**/node_modules*"
+      "**/*"
     ],
     "win": {
       "target": "squirrel"
