@@ -1,6 +1,6 @@
 {
   "name": "radu-cloud-desktop",
-  "displayName": "Radu Cloud",
+  "productName": "Radu Cloud",
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
