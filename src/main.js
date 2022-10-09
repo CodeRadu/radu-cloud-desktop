@@ -1,5 +1,10 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, autoUpdater } = require('electron');
 const path = require('path');
+
+const server = 'https://rcd-update-coderadu.vercel.app'
+const url = `${server}/update/${process.platform}/${app.getVersion()}`
+
+autoUpdater.setFeedURL({ url })
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -14,12 +19,35 @@ const createWindow = () => {
     height: 600,
   });
 
-  if (process.env.DEV === "true") {
+  if (process.env.DEV === "true" && !app.isPackaged) {
     mainWindow.loadURL("http://localhost:3000")
     mainWindow.webContents.openDevTools();
+    console.log("Updates are be disabled while in development mode")
   }
   else {
     mainWindow.loadFile(path.join(__dirname, '../lib/radu-cloud/build/index.html'));
+    autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+      const dialogOpts = {
+        type: 'info',
+        buttons: ['Restart', 'Later'],
+        title: 'Application Update',
+        message: process.platform === 'win32' ? releaseNotes : releaseName,
+        detail:
+          'A new version has been downloaded. Restart the application to apply the updates.',
+      }
+
+      dialog.showMessageBox(dialogOpts).then((returnValue) => {
+        if (returnValue.response === 0) autoUpdater.quitAndInstall()
+      })
+    })
+    autoUpdater.on('error', (message) => {
+      console.error('There was a problem updating the application')
+      console.error(message)
+    })
+    autoUpdater.checkForUpdates()
+    setInterval(() => {
+      autoUpdater.checkForUpdates()
+    }, 300000)
   }
   // and load the index.html of the app.
 
