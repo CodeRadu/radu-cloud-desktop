@@ -1,4 +1,4 @@
-const { app, BrowserWindow, autoUpdater } = require('electron');
+const { app, BrowserWindow, autoUpdater, dialog } = require('electron');
 const path = require('path');
 
 const server = 'https://rcd-update-coderadu.vercel.app'
