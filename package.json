@@ -15,7 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/coderadu/radu-cloud-desktop.git"
   },
-  "author": "Radu",
+  "author": {
+    "name": "Radu",
+    "email": "radu.gabi.m@gmail.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/coderadu/radu-cloud-desktop/issues"
@@ -39,6 +42,13 @@
     ],
     "win": {
       "target": "squirrel"
+    },
+    "linux": {
+      "icon": "icons/icon.png",
+      "target": [
+        "deb",
+        "appimage"
+      ]
     },
     "squirrelWindows": {
       "iconUrl": "https://cloud.venovedo.ro/favicon.ico"
