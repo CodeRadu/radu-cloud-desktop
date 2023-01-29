@@ -8,6 +8,10 @@
     "start": "cross-env DEV=true BROWSER=false concurrently -k \"cd lib/radu-cloud && npm start\" \"electron .\" \"cd lib/radu-cloud/functions && npm run dev\"",
     "build": "npm run website:build && npm run electron:build",
     "electron:build": "electron-builder",
+    "electron:build-pacman": "electron-builder -l pacman",
+    "electron:build-deb": "electron-builder -l deb",
+    "electron:build-appimage": "electron-builder -l appimage",
+    "electron:build-squirrel": "electron-builder -w squirrel",
     "website:build": "cd lib/radu-cloud && npm run build",
     "install": "cd lib/radu-cloud && npm install && cd functions && npm install"
   },
@@ -47,8 +51,10 @@
       "icon": "icons/icon.png",
       "target": [
         "deb",
-        "appimage"
-      ]
+        "appimage",
+        "pacman"
+      ],
+      "category": "Utility"
     },
     "squirrelWindows": {
       "iconUrl": "https://cloud.venovedo.ro/favicon.ico"
