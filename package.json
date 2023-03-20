@@ -6,8 +6,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "cross-env DEV=true BROWSER=false concurrently -k \"cd lib/radu-cloud && npm start\" \"electron .\" \"cd lib/radu-cloud/functions && npm run dev\"",
-    "build": "npm run website:build && npm run electron:build",
-    "electron:build": "electron-builder",
+    "build": "npm run website:build && npm run electron:build-all",
+    "electron:build-all": "electron-builder",
     "electron:build-pacman": "electron-builder -l pacman",
     "electron:build-deb": "electron-builder -l deb",
     "electron:build-appimage": "electron-builder -l appimage",
